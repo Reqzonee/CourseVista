@@ -62,7 +62,7 @@ exports.signup = async (req, res) => {
 			// OTP not found for the email
 			return res.status(400).json({
 				success: false,
-				message: "The OTP is not valid",
+				message: "The OTP is not valid because response length is zero",
 			});
 		} else if (otp !== response[0].otp) {
 			// Invalid OTP
@@ -218,7 +218,7 @@ exports.sendotp = async (req, res) => {
 			success: true,
 			message: `OTP Sent Successfully`,
 			otp,
-		});
+		}); 
 	} catch (error) {
 		console.log(error.message);
 		return res.status(500).json({ success: false, error: error.message });

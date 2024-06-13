@@ -61,7 +61,7 @@ const Home = () => {
           <CodeBlocks
             position={"lg:flex-row"}
             heading={
-              <div>
+              <div className="text-4xl font-semibold">
                 Unlock Your
                 <HighlightText text={"coding potential "} />
                 with our online courses
@@ -81,6 +81,7 @@ const Home = () => {
               active: false,
             }}
             codeblock={`<!DOCTYPE html>\n<html>\nhead><>Example</\ntitle><linkrel="stylesheet"href="styles.css">\n/head>\nbody>\nh1><ahref="/">Header</a>\n/h1>\nnav><ahref="one/">One</a><ahref="two/">Two</\na><ahref="three/">Three</a>\n/nav>`}
+            codeColor={"text-yellow-25"}
           />
         </div>
 
@@ -89,7 +90,7 @@ const Home = () => {
           <CodeBlocks
             position={"lg:flex-row-reverse"}
             heading={
-              <div>
+              <div className="text-4xl font-semibold">
                 Unlock Your
                 <HighlightText text={"coding potential "} />
                 with our online courses
@@ -109,6 +110,7 @@ const Home = () => {
               active: false,
             }}
             codeblock={`<!DOCTYPE html>\n<html>\nhead><>Example</\ntitle><linkrel="stylesheet"href="styles.css">\n/head>\nbody>\nh1><ahref="/">Header</a>\n/h1>\nnav><ahref="one/">One</a><ahref="two/">Two</\na><ahref="three/">Three</a>\n/nav>`}
+            codeColor={"text-yellow-25"}
           />
         </div>
 

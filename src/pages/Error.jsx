@@ -2,7 +2,7 @@ import React from 'react'
 
 const Error = () => {
   return (
-    <div className='flex mx-auto text-3xl text-red'>
+    <div className='flex mx-auto text-3xl text-white'>
       Error - 404 Not Found
     </div>
   )

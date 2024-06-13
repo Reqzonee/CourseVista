@@ -5,7 +5,6 @@ import {NavbarLinks} from "../../data/navbar-links"
 import { useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { MdOutlineShoppingCart } from "react-icons/md";
-import ProfileDropDown from '../cors/Auth/ProfileDropDown'
 import { apiConnector } from '../../services/apiconnector'
 import { categories } from '../../services/apis'
 import { IoIosArrowDropdownCircle } from "react-icons/io";

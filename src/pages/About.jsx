@@ -11,7 +11,10 @@ import ContactFormSection from "../components/cors/AboutPage/ContactFormSection"
 import Footer from "../components/common/Footer";
 const About = () => {
   return (
-    <div className="mx-auto mt-[100px] text-white">
+    <div className="mx-auto text-white">
+      <div className="h-[100px] flex mx-auto justify-center items-center text-richblack-300 bg-richblack-700 ">
+        <p className="mb-[-140px] font-semibold">About us</p>
+      </div>
       {/* Section 1  */}
       <section className="bg-richblack-700">
         <div className="relative mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-center text-white">

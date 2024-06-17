@@ -32,9 +32,10 @@ const Sidebar = () => {
         <div className='flex flex-col '>
             {
             sidebarLinks.map((link, index) => {
-                if(link.type && user?.accountType!==link.type) return null;
+                if(link.type && user?.accountType!==link.type) return "";
                 return (
-                    <SidebarLink key={link.id} link={link} iconName={link.icon}/>
+
+                        <SidebarLink key={link.id} link={link} iconName={link.icon}/>
                 )
             })}
         </div>

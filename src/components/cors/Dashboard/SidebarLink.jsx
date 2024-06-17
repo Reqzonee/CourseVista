@@ -1,16 +1,36 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import * as Icons from "react-icons/vsc"
 import { useDispatch } from 'react-redux';
 import { NavLink, matchPath, useLocation } from 'react-router-dom';
 
-const SidebarLink = (link, iconName) => {
+const SidebarLink = ({link, iconName}) => {
     const Icon = Icons[iconName];
     const location = useLocation();
     const dispatch = useDispatch();
 
+    // const match = matchPath("/users/123", {
+    //   path: "/users/:id",
+    //   exact: true,
+    //   strict: false
+    // });
+
+    useEffect(() =>{
+      
+    },[]);
+
     const matchRoute = (route)=>{
-        return matchPath({path:route}, location.pathname);
+      console.log(location.pathname, " ", {path:route});
+      // console.log("route ",route);
+      // console.log(matchPath(location?.pathname, {path:route}));
+      console.log("link ", link);
+      return matchPath( {path:route}, location.pathname);
     }
+
+    // const matchRoute = ()=>{
+
+    // }
+
+    
 
   return (
     <NavLink 

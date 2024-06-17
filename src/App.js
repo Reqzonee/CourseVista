@@ -10,12 +10,20 @@ import UpdatePassword from "./pages/UpdatePassword";
 import VerifyEmail from "./pages/VerifyEmail";
 import About from "./pages/About";
 import Dashboard from "./pages/Dashboard";
+import Cart from "../src/components/cors/Dashboard/Cart"
 import MyProfile from "./components/cors/Dashboard/MyProfile";
 import PrivateRoute from "./components/cors/Auth/PrivateRoute";
 import Error from "./pages/Error";
+import Contact from "./pages/Contact";
+import EnrolledCourses from "./components/cors/Dashboard/EnrolledCourses";
+import { ACCOUNT_TYPE } from "./utils/constants";
+import { useSelector } from "react-redux";
+import AddCourse from "./components/cors/Dashboard/AddCourse";
 
 function App() {
+  const { user } = useSelector((state) => state.profile)
   return (
+    
     <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
       <Navbar />
 
@@ -65,22 +73,41 @@ function App() {
         <Route
           path="about"
           element={
-            <OpenRoute>
+            // <OpenRoute>
               <About />
-            </OpenRoute>
+            // </OpenRoute>
           }
         />
-        <Route
-          element={
-            <PrivateRoute>
-              <Dashboard />
-            </PrivateRoute>
-          }
-        >
-          <Route path="dashboard/my-profile" element={<MyProfile />} />
-          {/* <Route path="dashboard/settings" element={<Setting/>}></Route> */}
-        </Route>
+        <Route path="/contact" element={<Contact/>}/>
+       
+        <Route 
+      element={
+        <PrivateRoute>
+          <Dashboard />
+        </PrivateRoute>
+      }
+    >
+    <Route path="dashboard/my-profile" element={<MyProfile />} />
 
+    {
+      user?.accountType === ACCOUNT_TYPE.STUDENT && (
+        <>
+        <Route path="dashboard/enrolled-courses" element={<EnrolledCourses />} />
+        <Route path="dashboard/cart" element={<Cart />} />
+        </>
+      )
+    }
+
+    {
+      user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
+        <>
+        <Route path="dashboard/add-course" element={<AddCourse />} />
+        </>
+      )
+    }
+
+
+    </Route>
         <Route path="*" element={<Error />} />
       </Routes>
     </div>

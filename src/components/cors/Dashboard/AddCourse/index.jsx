@@ -3,10 +3,10 @@ import Rendersteps from "./Rendersteps";
 export default function AddCourse(){
     return(
         <>
-        <div>
+        <div className="text-white">
             <div>
                 <h1>Add Course</h1>
-                <div>
+                <div >
                     <Rendersteps/>
                 </div>
             </div>

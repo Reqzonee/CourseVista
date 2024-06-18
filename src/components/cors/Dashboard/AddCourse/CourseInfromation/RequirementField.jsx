@@ -8,7 +8,7 @@ const RequirementField = ({name, label, register, errors, setValue, getValues}) 
     useEffect(()=> {
         register(name, {
             required:true,
-            validate: (value)=> value.length > 0
+            // validate: (value)=> value.length > 0
         })
     },[])
 
@@ -17,9 +17,12 @@ const RequirementField = ({name, label, register, errors, setValue, getValues}) 
     },[requirementList])
 
     const handleAddRequirement = ()=>{
+        console.log("I am in handleadd requirement");
+        console.log("requirement ", requirement);
+        console.log("requriemtn list ", requirementList.length);
         if(requirement){
-            setRequirement([...requirementList, requirement]);
-            setRequirement("");
+            setRequirementList([...requirementList, requirement]);
+            // setRequirement("");
         }
     }
 
@@ -37,7 +40,7 @@ const RequirementField = ({name, label, register, errors, setValue, getValues}) 
         id={name}
         value={requirement}
         onChange={(e)=>setRequirement(e.target.value)}
-        className='w-full'
+        className='w-full text-black'
         />
         <button
         type='button'

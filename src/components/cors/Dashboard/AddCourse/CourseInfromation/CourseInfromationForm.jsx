@@ -21,11 +21,12 @@ const CourseInfromationForm = () => {
 
     const dispatch = useDispatch();
     const {token} = useSelector((state)=>state.auth);
-    const {course, editCourse} = useSelector((state) => state.course);
+    const {course, step, editCourse } = useSelector((state) => state.course);
     const [loading, setLoading] = useState(false);
     const [courseCategories, setCourseCategories] = useState([]);
 
     useEffect(() =>{
+        // console.log("formData ", formData);
         const getCategories = async()=>{
             setLoading(true);
             const categories = await fetchCourseCategories();
@@ -41,11 +42,11 @@ const CourseInfromationForm = () => {
             setValue("courseTitle", course.courseName);
             setValue("courseShortDesc", course.courseDescription);
             setValue("coursePrice", course.price);
-            setValue("courseTags", course.tag);
+            // setValue("courseTags", course.tag);
             setValue("courseBenefits", course.whatYouWillLearn);
             setValue("courseCategory", course.category);
-            setValue("courseRequirements", course.instructions);
-            setValue("courseImage", course.thumbnail);
+            // setValue("courseRequirements", course.instructions);
+            // setValue("courseImage", course.thumbnail);
         }
 
         getCategories();
@@ -58,15 +59,15 @@ const CourseInfromationForm = () => {
             currentValues.coursePrice !== course.price ||
             // currentValues.courseTags.toString() !== course.tag.toString() ||
             currentValues.courseBenefits !== course.whatYouWillLearn ||
-            currentValues.courseCategory._id !== course.category ||
-            currentValues.courseRequirements.toString() !== course.instructions.toString() 
+            currentValues.courseCategory._id !== course.category 
+            // currentValues.courseRequirements.toString() !== course.instructions.toString() 
             // currentValues.courseImage !== course.thumbnail ||
-
-
         ){
+            console.log("isFromupadata is printing true");
             return true;
         }
         else {
+            console.log("isFromupadata is printing false");
             return false;
         }
     }
@@ -108,7 +109,7 @@ const CourseInfromationForm = () => {
                 const result = await editCourseDetails(formData, token);
                 setLoading(false);
                 if(result){
-                    setStep(2);
+                    dispatch(setStep(2));
                     dispatch(setCourse(result));
                 }
             }
@@ -127,15 +128,19 @@ const CourseInfromationForm = () => {
         formData.append("price", data.coursePrice);
         formData.append("whatYouWillLearn", data.courseBenefits);
         formData.append("category", data.courseCategory);
-        formData.append("instructions", data.JSON.stringify(data.courseRequirements));
+        // formData.append("instructions", data.JSON.stringify(data.courseRequirements));
         // formData.append("courseName", data.courseTitle);
         // formData.append("courseName", data.courseTitle);
         formData.append("status", COURSE_STATUS.DRAFT);
+        console.log("formData is ", formData);
+
 
         setLoading(true);
         const result = await addCourseDetails(formData, token);
         if(result){
-            setStep(2);
+            console.log("I am inside result");
+            dispatch(setStep(2));
+            console.log("step ", step);
             dispatch(setCourse(result));
         }
         setLoading(false);
@@ -279,6 +284,7 @@ const CourseInfromationForm = () => {
                     </button>
                 )
             }
+            
 
             <IconBttn
             

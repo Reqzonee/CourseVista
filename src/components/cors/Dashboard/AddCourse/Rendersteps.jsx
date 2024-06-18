@@ -41,9 +41,9 @@ const Rendersteps = () => {
     </div>
 
     <div>
-        {steps.map((item)=>(
+        {steps.map((item, index)=>(
             <>
-            <div>
+            <div key={index}>
                 <p>{item.title}</p>
             </div>
             </>

@@ -14,14 +14,14 @@ exports.createCourse = async (req, res) => {
 			courseDescription,
 			whatYouWillLearn,
 			price,
-			tag,
+			// tag,
 			category,
 			status,
 			instructions,
 		} = req.body;
 
 		// Get thumbnail image from request files
-		const thumbnail = req.files.thumbnailImage;
+		// const thumbnail = req.files.thumbnailImage;
 
 		// Check if any of the required fields are missing
 		if (
@@ -29,8 +29,8 @@ exports.createCourse = async (req, res) => {
 			!courseDescription ||
 			!whatYouWillLearn ||
 			!price ||
-			!tag ||
-			!thumbnail ||
+			// !tag ||
+			// !thumbnail ||
 			!category
 		) {
 			return res.status(400).json({
@@ -111,7 +111,7 @@ exports.createCourse = async (req, res) => {
 		});
 	} catch (error) {
 		// Handle any errors that occur during the creation of the course
-		console.error(error);
+		console.error("error ", error);
 		res.status(500).json({
 			success: false,
 			message: "Failed to create course",

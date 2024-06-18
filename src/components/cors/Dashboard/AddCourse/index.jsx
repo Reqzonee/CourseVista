@@ -3,7 +3,7 @@ import Rendersteps from "./Rendersteps";
 export default function AddCourse(){
     return(
         <>
-        <div className="text-white">
+        <div className="text-white flex ">
             <div>
                 <h1>Add Course</h1>
                 <div >

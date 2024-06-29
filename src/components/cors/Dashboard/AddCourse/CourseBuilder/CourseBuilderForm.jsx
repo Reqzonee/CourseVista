@@ -50,6 +50,7 @@ const CourseBuilderForm = () => {
     }
 
     const cancelEdit=()=>{
+        console.log("I am inside canceledit");
         setEditSectionName(null);
         setValue("sectionName", "");
     }
@@ -60,15 +61,17 @@ const CourseBuilderForm = () => {
     }
 
     const goToNext = ()=>{
+        console.log("I am inide goto next");
         if(course.courseContent.length === 0){
             toast.error("Please add atleast one Seciton");
             return;
         }
-        if(course.courseContent.some((section)=>section.subSubsection.length === 0)){
+        if(course.courseContent.some((section)=>section.subSection.length === 0)){
             toast.error("Please add atleast one lecture in each section");
             return;
         }
         //if everythin is good go to next step
+        console.log("I am after inide goto next");
         dispatch(setStep(3));
     }
 
@@ -123,11 +126,12 @@ const CourseBuilderForm = () => {
 
       <div className='flex justify-end gap-x-3'>
         <button
-        onclick={goBack}
+        onClick={goBack}
         className='rounded-md cursor-pointer flex items-center'>
             Back
         </button>
         <IconBttn
+        disabled={loading}
         text="Next"
         onclick={goToNext}>
             <MdOutlineNavigateNext />

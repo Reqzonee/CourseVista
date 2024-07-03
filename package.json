@@ -28,6 +28,7 @@
     "redux-toolkit": "^1.1.2",
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
+    "swiper": "^11.1.4",
     "url": "^0.11.3",
     "util": "^0.12.5",
     "video-react": "^0.16.0",

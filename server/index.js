@@ -49,12 +49,11 @@ app.use("/api/v1/payment", paymentRoutes);
 //def route
 
 app.get("/", (req, res) => {
-	return res.json({
-		success:true,
-		message:'Your server is up and running....'
+	res.status(200).json({
+	  message: "Welcome to the API",
 	});
-});
-
+  });
+  
 app.listen(PORT, () => {
 	console.log(`App is running at ${PORT}`)
 })

@@ -12,11 +12,6 @@ const cors = require("cors");
 const {cloudinaryConnect } = require("./config/cloudinary");
 const fileUpload = require("express-fileupload");
 const dotenv = require("dotenv");
-
-app.use(cors({
-	origin: '*', // Allow all origins
-	methods: ['GET'], // Allow only GET method
-  }));
   
 
 dotenv.config();
@@ -29,11 +24,12 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
 	cors({
-		origin:"http://localhost:3000",
-		credentials:true,
+	  origin: JSON.parse(process.env.CORS_ORIGIN),
+	  credentials: true,
+	  maxAge: 14400,
 	})
-)
-
+  );
+  
 app.use(
 	fileUpload({
 		useTempFiles:true,

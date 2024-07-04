@@ -13,6 +13,12 @@ const {cloudinaryConnect } = require("./config/cloudinary");
 const fileUpload = require("express-fileupload");
 const dotenv = require("dotenv");
 
+app.use(cors({
+	origin: '*', // Allow all origins
+	methods: ['GET'], // Allow only GET method
+  }));
+  
+
 dotenv.config();
 const PORT = process.env.PORT || 4000;
 

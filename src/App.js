@@ -22,6 +22,7 @@ import AddCourse from "./components/cors/Dashboard/AddCourse";
 import MyCourses from "./components/cors/Dashboard/MyCourses";
 import EditCourse from "./components/cors/Dashboard/EditCourse";
 import Catalog from "./pages/Catelog";
+import CourseDetails from "./pages/CourseDetails";
 
 function App() {
   const { user } = useSelector((state) => state.profile)
@@ -33,6 +34,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="catalog/:catalogName" element={<Catalog/>} />
+        <Route path="courses/:courseId" element={<CourseDetails/>} />
 
         <Route
           path="signup"

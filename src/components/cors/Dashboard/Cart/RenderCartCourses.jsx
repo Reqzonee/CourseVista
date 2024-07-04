@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeFromCart } from '../../../../slices/cartSlice';
 import { FaStar } from 'react-icons/fa6';
@@ -9,11 +9,15 @@ const RenderCartCourses = () => {
     const {cart} = useSelector((state) => state.cart);
     const dispatch = useDispatch();
 
+    useEffect(() => {
+      console.log("cart inside rendercartcourse ", cart);
+    }, []);
+    
   return (
     <div>
       {
         cart.map((course, index)=>(
-            <div>
+            <div key={index}>
                 <div>
                     <img src={course?.thumbnail}/>
                     <div>

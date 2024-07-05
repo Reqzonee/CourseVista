@@ -15,7 +15,7 @@ const viewcourseSlice = createSlice({
         setCourseSectionData : (state, action)=>{
             state.courseSectionData = action.payload
         },
-        setEntrieCourseData : (state, action)=>{
+        setEntireCourseData : (state, action)=>{
             state.courseEntireData = action.payload 
         },
         setTotalNoOfLectures : (state, action)=>{
@@ -32,7 +32,7 @@ const viewcourseSlice = createSlice({
 
 export const {
     setCourseSectionData,
-    setEntrieCourseData,
+    setEntireCourseData,
     setTotalNoOfLectures,
     setCompletedLectures,
     updateCompletedLectures,

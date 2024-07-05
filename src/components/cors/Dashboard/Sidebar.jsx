@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import SidebarLink from './SidebarLink'
 import { useNavigate } from 'react-router-dom'
 import { VscSignOut } from "react-icons/vsc";
-import ConfirmationModal from '../../common/ConfirmationModal'
+// import ConfirmationModal from '../../common/ConfirmationModal'
 
 
 
@@ -43,7 +43,7 @@ const Sidebar = () => {
         <div className='mx-auto mt-6 mb-6 h-[1px] w-10/12 bg-richblack-600'>
         <div className='flex flex-col'>
             <SidebarLink
-            link={{name:"Setting", path:"dashboard/setting"}}
+            link={{name:"Settings", path:"dashboard/settings"}}
             iconName="VscSettingsGear"/>
 
             <button
@@ -65,7 +65,7 @@ const Sidebar = () => {
         </div>
         </div>
       </div>
-      {confirmationModal && <ConfirmationModal modalData={confirmationModal}/>}
+      {/* {confirmationModal && <ConfirmationModal modalData={confirmationModal}/>} */}
     </div>
   )
 }

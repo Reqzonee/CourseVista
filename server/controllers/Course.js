@@ -28,7 +28,7 @@ exports.createCourse = async (req, res) => {
     } = req.body;
 
     // Get thumbnail image from request files
-    // const thumbnail = req.files.thumbnailImage;
+    const thumbnail = req.files.thumbnailImage;
 
     // Check if any of the required fields are missing
     if (
@@ -69,11 +69,11 @@ exports.createCourse = async (req, res) => {
       });
     }
     // Upload the Thumbnail to Cloudinary
-    // const thumbnailImage = await uploadImageToCloudinary(
-    // 	thumbnail,
-    // 	process.env.FOLDER_NAME
-    // );
-    // console.log(thumbnailImage);
+    const thumbnailImage = await uploadImageToCloudinary(
+    	thumbnail,
+    	process.env.FOLDER_NAME
+    );
+    console.log(thumbnailImage);
     // Create a new course with the given details
     console.log("I am inside server side course api");
     const newCourse = await Course.create({
@@ -84,7 +84,7 @@ exports.createCourse = async (req, res) => {
       price,
       // tag: tag,
       category: categoryDetails._id,
-      // thumbnail: thumbnailImage.secure_url,
+      thumbnail: thumbnailImage.secure_url,
       status: status,
       instructions: instructions,
     });
@@ -420,3 +420,86 @@ exports.deleteCourse = async (req, res) => {
 	  })
 	}
   }
+
+  //search course by title,description and tags array
+  exports.searchCourse = async (req, res) => {
+    try {
+      const  { searchQuery }  = req.body
+    //   console.log("searchQuery : ", searchQuery)
+      const courses = await Course.find({
+      $or: [
+        { courseName: { $regex: searchQuery, $options: "i" } },
+        { courseDescription: { $regex: searchQuery, $options: "i" } },
+        { tag: { $regex: searchQuery, $options: "i" } },
+      ],
+    })
+    .populate({
+    path: "instructor",  })
+    .populate("category")
+    .populate("ratingAndReviews")
+    .exec();
+  
+    return res.status(200).json({
+    success: true,
+    data: courses,
+      })
+    } catch (error) {
+      return res.status(500).json({
+      success: false,
+      message: error.message,
+      })
+    }		
+  }					
+  
+//mark lecture as completed
+exports.markLectureAsComplete = async (req, res) => {
+	const { courseId, subSectionId, userId } = req.body
+	if (!courseId || !subSectionId || !userId) {
+	  return res.status(400).json({
+		success: false,
+		message: "Missing required fields",
+	  })
+	}
+	try {
+	progressAlreadyExists = await CourseProgress.findOne({
+				  userID: userId,
+				  courseID: courseId,
+				})
+	  const completedVideos = progressAlreadyExists.completedVideos
+	  if (!completedVideos.includes(subSectionId)) {
+		await CourseProgress.findOneAndUpdate(
+		  {
+			userID: userId,
+			courseID: courseId,
+		  },
+		  {
+			$push: { completedVideos: subSectionId },
+		  }
+		)
+	  }else{
+		return res.status(400).json({
+			success: false,
+			message: "Lecture already marked as complete",
+		  })
+	  }
+	  await CourseProgress.findOneAndUpdate(
+		{
+		  userId: userId,
+		  courseID: courseId,
+		},
+		{
+		  completedVideos: completedVideos,
+		}
+	  )
+	return res.status(200).json({
+	  success: true,
+	  message: "Lecture marked as complete",
+	})
+	} catch (error) {
+	  return res.status(500).json({
+		success: false,
+		message: error.message,
+	  })
+	}
+
+}

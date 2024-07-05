@@ -13,6 +13,8 @@ const {
   editCourse,
   getInstructorCourses,
   deleteCourse,
+  searchCourse,
+  markLectureAsComplete,
 } = require("../controllers/Course")
 
 
@@ -77,6 +79,12 @@ router.post("/editCourse", auth, isInstructor, editCourse)
 router.get("/getInstructorCourses", auth, isInstructor, getInstructorCourses)
 // Delete a Course
 router.delete("/deleteCourse", deleteCourse)
+// Search Courses
+router.post("/searchCourse", searchCourse);
+//mark lecture as complete
+router.post("/updateCourseProgress", auth, isStudent, markLectureAsComplete);
+
+
 
 // ********************************************************************************************************
 //                                      Category routes (Only by Admin)

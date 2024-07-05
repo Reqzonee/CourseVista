@@ -1,47 +1,46 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import Rendersteps from "../AddCourse/Rendersteps";
-import { setCourse, setEditCourse } from "../../../../slices/courseSlice";
-import { getFullDetailsOfCourse } from "../../../../services/operations/courseDetailsAPI";
+import React from 'react'
+import { getFullDetailsOfCourse } from '../../../../services/operations/courseDetailsAPI';
+import { setCourse, setEditCourse, setStep } from '../../../../slices/courseSlice';
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import RenderSteps from '../AddCourse/Rendersteps';
 
-export default function EditCourse() {
-  const dispatch = useDispatch();
-  const { courseId } = useParams();
-  const { course } = useSelector((state) => state.course);
-  const [loading, setLoading] = useState(false);
-  const { token } = useSelector((state) => state.auth);
+const EditCourse = () => {
+    const {token} = useSelector((state) => state.auth);
+    const {course} = useSelector((state) => state.course);
+    const {courseId} = useParams();
+    const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch();
 
-  useEffect(()=>{
-    const populateCourseDetails = async()=>{
-        setLoading(true);
-        const result = await getFullDetailsOfCourse(courseId, token);
-        if(result?.courseDetails){
-            dispatch(setEditCourse(true));
-            dispatch(setCourse(result?.courseDetails));
+
+    useEffect(() => {
+        const popualteCourse = async () => {
+            setLoading(true);
+            const result = await getFullDetailsOfCourse(courseId, token);
+            if(result?.courseDetails) {
+                dispatch(setCourse(result.courseDetails));
+                console.log("result",course);
+                dispatch(setEditCourse(true));
+                dispatch(setStep(1));
+            }
+            setLoading(false);
         }
-        setLoading(false);
-    }
-    populateCourseDetails();
-  },[])
-
-  if(loading){
-    return (
-        <div>
-            Loading....
-        </div>
-    )
-  }
+        popualteCourse();
+    },[]);
 
   return (
-    <div>
-      <h1>Edit Course</h1>
-      <div>
+    <div className='mx-auto w-11/12 max-w-[1000px] py-10'>
+        <h1 className='mb-14 text-3xl font-medium text-richblack-5'>Edit Course</h1>
         {
-            course ? (<Rendersteps/>)
-            :(<p>Course Not Found</p>)
+            loading ? <p>Loading...</p> :(
+        <RenderSteps />
+            )
         }
-      </div>
     </div>
-  );
+  )
 }
+
+export default EditCourse

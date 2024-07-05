@@ -1,21 +1,20 @@
-import React from "react";
-import HighlightText from "../components/cors/Homepage/HighlightText";
-import BannerImage1 from "../assets/Images/aboutus1.webp";
-import BannerImage2 from "../assets/Images/aboutus2.webp";
-import BannerImage3 from "../assets/Images/aboutus3.webp";
-import Qoute from "../components/cors/AboutPage/Qoute";
-import FoundingStory from "../assets/Images/FoundingStory.png";
-import StatsComponent from "../components/cors/AboutPage/Stats";
-import LearningGrid from "../components/cors/AboutPage/LearningGrid";
-import ContactFormSection from "../components/cors/AboutPage/ContactFormSection";
-import Footer from "../components/common/Footer";
+import React from "react"
+
+import FoundingStory from "../assets/Images/FoundingStory.png"
+import BannerImage1 from "../assets/Images/aboutus1.webp"
+import BannerImage2 from "../assets/Images/aboutus2.webp"
+import BannerImage3 from "../assets/Images/aboutus3.webp"
+import Footer from "../components/common/Footer"
+import ReviewSlider from "../components/common/ReviewSlider"
+import ContactFormSection from "../components/cors/AboutPage/ContactFormSection"
+import LearningGrid from "../components/cors/AboutPage/LearningGrid"
+import Qoute from "../components/cors/AboutPage/Qoute"
+import StatsComponenet from "../components/cors/AboutPage/Stats"
+import HighlightText from "../components/cors/Homepage/HighlightText"
+
 const About = () => {
   return (
-    <div className="mx-auto text-white">
-      <div className="h-[100px] flex mx-auto justify-center items-center text-richblack-300 bg-richblack-700 ">
-        <p className="mb-[-140px] font-semibold">About us</p>
-      </div>
-      {/* Section 1  */}
+    <div>
       <section className="bg-richblack-700">
         <div className="relative mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-center text-white">
           <header className="mx-auto py-20 text-4xl font-semibold lg:w-[70%]">
@@ -30,29 +29,25 @@ const About = () => {
           </header>
           <div className="sm:h-[70px] lg:h-[150px]"></div>
           <div className="absolute bottom-0 left-[50%] grid w-[100%] translate-x-[-50%] translate-y-[30%] grid-cols-3 gap-3 lg:gap-5">
-            <img src={BannerImage1} />
-            <img src={BannerImage2} />
-            <img src={BannerImage3} />
+            <img src={BannerImage1} alt="" />
+            <img src={BannerImage2} alt="" />
+            <img src={BannerImage3} alt="" />
           </div>
         </div>
       </section>
 
-      {/* Section 2 */}
       <section className="border-b border-richblack-700">
-        <div className="mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-richblack-500 ">
-          <div className="h-[100px]"></div>
+        <div className="mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-richblack-500">
+          <div className="h-[100px] "></div>
           <Qoute />
         </div>
       </section>
 
-      {/* Section 3  */}
       <section>
         <div className="mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-richblack-500">
-          {/* Founding story wala div  */}
           <div className="flex flex-col items-center gap-10 lg:flex-row justify-between">
-            {/* Founding Story left box */}
             <div className="my-24 flex lg:w-[50%] flex-col gap-10">
-              <h1 className="bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#FCB045] bg-clip-text text-4xl font-semibold text-transparent lg:w-[70%]">
+              <h1 className="bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#FCB045] bg-clip-text text-4xl font-semibold text-transparent lg:w-[70%] ">
                 Our Founding Story
               </h1>
               <p className="text-base font-medium text-richblack-300 lg:w-[95%]">
@@ -72,6 +67,7 @@ const About = () => {
                 potential.
               </p>
             </div>
+
             <div>
               <img
                 src={FoundingStory}
@@ -80,12 +76,9 @@ const About = () => {
               />
             </div>
           </div>
-
-          {/* Vision and mission wala parent div  */}
           <div className="flex flex-col items-center lg:gap-10 lg:flex-row justify-between">
-            {/* left box */}
             <div className="my-24 flex lg:w-[40%] flex-col gap-10">
-              <h1 className="bg-gradient-to-b from-[#FF512F] to-[#F09819] bg-clip-text text-4xl font-semibold text-transparent lg:w-[70%]">
+              <h1 className="bg-gradient-to-b from-[#FF512F] to-[#F09819] bg-clip-text text-4xl font-semibold text-transparent lg:w-[70%] ">
                 Our Vision
               </h1>
               <p className="text-base font-medium text-richblack-300 lg:w-[95%]">
@@ -97,42 +90,34 @@ const About = () => {
                 dynamic and interactive learning experience.
               </p>
             </div>
-
-            {/* rigth box */}
             <div className="my-24 flex lg:w-[40%] flex-col gap-10">
-              <h1 className="bg-gradient-to-b from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB] text-transparent bg-clip-text text-4xl font-semibold lg:w-[70%]">Our Mission</h1>
+              <h1 className="bg-gradient-to-b from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB] text-transparent bg-clip-text text-4xl font-semibold lg:w-[70%] ">
+              Our Mission
+              </h1>
               <p className="text-base font-medium text-richblack-300 lg:w-[95%]">
-                our mission goes beyond just delivering courses online. We
-                wanted to create a vibrant community of learners, where
-                individuals can connect, collaborate, and learn from one
-                another. We believe that knowledge thrives in an environment of
-                sharing and dialogue, and we foster this spirit of collaboration
-                through forums, live sessions, and networking opportunities.
+              Our mission goes beyond just delivering courses online. We wanted to create a vibrant community of learners, where individuals can connect, collaborate, and learn from one another. We believe that knowledge thrives in an environment of sharing and dialogue, and we foster this spirit of collaboration through forums, live sessions, and networking opportunities.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Section 4 */}
-      <StatsComponent />
-
-      {/* Section 5 */}
+      <StatsComponenet />
       <section className="mx-auto mt-20 flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-white">
         <LearningGrid />
         <ContactFormSection />
       </section>
 
-      <section className="relative mx-auto my-20 flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-8 bg-richblack-900 text-white">
+      <div className="relative mx-auto my-20 flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-8 bg-richblack-900 text-white">
+        {/* Reviws from Other Learner */}
         <h1 className="text-center text-4xl font-semibold mt-8">
           Reviews from other learners
         </h1>
-          {/* <ReviewSlider/> */}
-      </section>
-
+        <ReviewSlider />
+      </div>
       <Footer />
     </div>
-  );
-};
+  )
+}
 
-export default About;
+export default About

@@ -141,3 +141,33 @@ exports.getEnrolledCourses = async (req, res) => {
       })
     }
 };
+
+//instructor dashboard
+exports.instructorDashboard = async (req, res) => {
+	try {
+		const id = req.user.id;
+		const courseData = await Course.find({instructor:id});
+		const courseDetails = courseData.map((course) => {
+			totalStudents = course?.studentsEnrolled?.length;
+			totalRevenue = course?.price * totalStudents;
+			const courseStats = {
+				_id: course._id,
+				courseName: course.courseName,
+				courseDescription: course.courseDescription,
+				totalStudents,
+				totalRevenue,
+			};
+			return courseStats;
+		});
+		res.status(200).json({
+			success: true,
+			message: "User Data fetched successfully",
+			data: courseDetails,
+		});
+	} catch (error) {
+		return res.status(500).json({
+			success: false,
+			message: error.message,
+		});
+	}
+}

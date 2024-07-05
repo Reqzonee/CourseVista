@@ -27,7 +27,6 @@ export default function CoursesTable({ courses, setCourses }) {
   const TRUNCATE_LENGTH = 30
 
   const handleCourseDelete = async (courseId) => {
-    console.log("I am inside delete");
     setLoading(true)
     await deleteCourse({ courseId: courseId }, token)
     const result = await fetchInstructorCourses(token)

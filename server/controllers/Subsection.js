@@ -1,8 +1,8 @@
 // Import necessary modules
 const Section = require("../models/Section");
+const SubSection = require("../models/SubSection");
 const Course = require("../models/Course");
 const { uploadImageToCloudinary } = require("../utils/imageUploader");
-const Subsection = require("../models/Subsection.js");
 
 // Create a new sub-section for a given section
 exports.createSubSection = async (req, res) => {
@@ -34,7 +34,7 @@ exports.createSubSection = async (req, res) => {
 
 		console.log(uploadDetails);
 		// Create a new sub-section with the necessary information
-		const SubSectionDetails = await Subsection.create({
+		const SubSectionDetails = await SubSection.create({
 			title: title,
 			// timeDuration: timeDuration,
 			description: description,

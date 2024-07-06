@@ -22,7 +22,7 @@ database.connect();
 app.use(express.json());
 app.use(cookieParser());
 const cors = require('cors');
-app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(cors({ origin: process.env.CORS_ORIGIN }));
   
 app.use(
 	fileUpload({

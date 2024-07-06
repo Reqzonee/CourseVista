@@ -22,7 +22,7 @@ database.connect();
 app.use(express.json());
 app.use(cookieParser());
 const cors = require('cors');
-app.use(cors({ origin: 'https://coursevista-one.vercel.app/' }));
+app.use(cors({ origin: 'http://localhost:3000' }));
   
 app.use(
 	fileUpload({

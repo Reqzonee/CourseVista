@@ -2,7 +2,7 @@
 const Section = require("../models/Section");
 const Course = require("../models/Course");
 const { uploadImageToCloudinary } = require("../utils/imageUploader");
-const Subsection = require("../models/Subsection");
+const Subsection = require("../models/Subsection.js");
 
 // Create a new sub-section for a given section
 exports.createSubSection = async (req, res) => {

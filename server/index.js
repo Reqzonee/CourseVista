@@ -8,7 +8,6 @@ const courseRoutes = require("./routes/Course");
 
 const database = require("./config/database");
 const cookieParser = require("cookie-parser");
-const cors = require("cors");
 const {cloudinaryConnect } = require("./config/cloudinary");
 const fileUpload = require("express-fileupload");
 const dotenv = require("dotenv");
@@ -22,13 +21,8 @@ database.connect();
 //middlewares
 app.use(express.json());
 app.use(cookieParser());
-app.use(
-	cors({
-	  origin: JSON.parse(process.env.CORS_ORIGIN),
-	  credentials: true,
-	  maxAge: 14400,
-	})
-  );
+const cors = require('cors');
+app.use(cors({ origin: 'https://coursevista-one.vercel.app/' }));
   
 app.use(
 	fileUpload({
